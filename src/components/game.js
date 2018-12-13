@@ -31,20 +31,31 @@ export default class Game extends React.Component {
             this.setState({
                 displayTimer:true,
                 disabled: true,
+                guessesList:[...this.state.guessesList,guess],
+                guessCount: this.state.guessCount+1,
+                feedback: feedback,
+            })
+        }
+        else if (feedback==="Oops, you already guessed that number!"){
+            this.setState({
+                feedback: feedback,
             })
         }
 
         //this successfully updates the state for the count and the list
-        this.setState({
-            guessesList:[...this.state.guessesList,guess],
-            guessCount: this.state.guessCount+1,
-            feedback: feedback,
-        })
+        else{
+            this.setState({
+                guessesList:[...this.state.guessesList,guess],
+                guessCount: this.state.guessCount+1,
+                feedback: feedback,
+            })
+        }
     }
 
     handleFeedBack(guess){
+
         //change feedback depending on guess:
-        return guess==this.state.correctAnswer ?  "YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"
+        return this.state.guessesList.includes(guess) ? "Oops, you already guessed that number!" : guess==this.state.correctAnswer ?  "YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"
         : guess>this.state.correctAnswer-10 && guess<this.state.correctAnswer+10 ? "Hot!" 
         : "Cold :(";
     }
