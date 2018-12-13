@@ -4,8 +4,8 @@ import './guess-count.css';
 
 export default function GuessCount(props) {
     return (
-        <p>
+        <h4>
             Guess #<span id="count">{props.guessCount}</span>!
-        </p>
+        </h4>
     );
 }

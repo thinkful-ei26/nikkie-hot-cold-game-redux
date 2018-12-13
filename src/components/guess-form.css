@@ -13,8 +13,8 @@ input {
 }
 
 input.button {
-	background: #1F253D;
-	color: #95a5a6;
+	background: white;
+	color: black;
 	font-size: 2em;
 	padding: 0.2em;
 	-webkit-transition: background 1s ease-in-out;

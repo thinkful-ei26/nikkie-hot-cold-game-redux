@@ -24,13 +24,9 @@ export default class Game extends React.Component {
     }
 
     handleGuessSubmit(guess){
-        //change feedback depending on guess:
-        let updatedFeedback;
-        updatedFeedback = guess==this.state.correctAnswer ?  "YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"
-        : guess>this.state.correctAnswer-10 && guess<this.state.correctAnswer+10 ? "Hot!" 
-        : "Cold :(";
+        let feedback = this.handleFeedBack(guess);
 
-        if(updatedFeedback==="YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"){
+        if(feedback==="YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"){
             this.setState({
                 displayTimer:true,
             })
@@ -40,8 +36,15 @@ export default class Game extends React.Component {
         this.setState({
             guessesList:[...this.state.guessesList,guess],
             guessCount: this.state.guessCount+1,
-            feedback: updatedFeedback,
+            feedback: feedback,
         })
+    }
+
+    handleFeedBack(guess){
+        //change feedback depending on guess:
+        return guess==this.state.correctAnswer ?  "YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"
+        : guess>this.state.correctAnswer-10 && guess<this.state.correctAnswer+10 ? "Hot!" 
+        : "Cold :(";
     }
 
     restartGame(){

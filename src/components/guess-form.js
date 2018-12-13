@@ -21,13 +21,15 @@ export default class GuessForm extends React.Component {
         return (
             <form onSubmit={e=>this.onSubmit(e)}>
                 <input 
-                    type="text" 
+                    type="number" 
                     name="userGuess" 
                     id="userGuess"
                     className="text" 
                     maxLength="3" 
                     autoComplete="off"
                     placeholder="Enter your Guess" 
+                    min= "1"
+                    max="100"
                     required 
                     ref={input => this.textInput=input}/>
                 <input type="submit" id="guessButton" className="button" name="submit" value="Guess"/>
