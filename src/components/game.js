@@ -19,6 +19,7 @@ export default class Game extends React.Component {
             guessesList: [],
             correctAnswer: Math.floor((Math.random() * 100) + 1),
             displayTimer: false,
+            disabled: false,
             // correctAnswer changes when user hits new game so should be part of state
         }
     }
@@ -29,6 +30,7 @@ export default class Game extends React.Component {
         if(feedback==="YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"){
             this.setState({
                 displayTimer:true,
+                disabled: true,
             })
         }
 
@@ -55,6 +57,7 @@ export default class Game extends React.Component {
             guessesList: [],
             correctAnswer: Math.floor((Math.random() * 100) + 1),
             displayTimer: false,
+            disabled:false,
             //is there a more efficient way of doing this with defaults? you could have an initial state
         })
     }
@@ -65,7 +68,7 @@ export default class Game extends React.Component {
             <div>
                 <Header displayTimer={this.state.displayTimer} restartGame={()=>this.restartGame()} />
                 <div className="box">
-                <GuessSection feedback={this.state.feedback} handleGuessSubmit={guess=>this.handleGuessSubmit(guess)} />
+                <GuessSection disabled={this.state.disabled} feedback={this.state.feedback} handleGuessSubmit={guess=>this.handleGuessSubmit(guess)} />
                 <GuessCount guessCount={this.state.guessCount} />
                 <GuessList guessesList={this.state.guessesList} />
                 </div>

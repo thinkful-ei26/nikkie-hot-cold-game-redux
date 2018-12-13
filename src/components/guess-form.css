@@ -61,6 +61,8 @@ input:focus {
    color: #95a5a6; 
 }
 
-.disabled{
-	cursor: not-allowed;
+input:disabled, input.button:disabled:hover{
+	cursor:not-allowed;
+	background-color:white;
+	color:black;
 }

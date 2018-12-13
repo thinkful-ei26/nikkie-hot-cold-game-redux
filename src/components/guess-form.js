@@ -18,6 +18,11 @@ export default class GuessForm extends React.Component {
 
 
     render(){
+        let disabled="";
+        if(this.props.disabled){
+            disabled= "disabled"
+        }
+        console.log('disabled is', disabled);
         return (
             <form onSubmit={e=>this.onSubmit(e)}>
                 <input 
@@ -31,10 +36,14 @@ export default class GuessForm extends React.Component {
                     min= "1"
                     max="100"
                     required 
+                    disabled={disabled}
                     ref={input => this.textInput=input}/>
-                <input type="submit" id="guessButton" className="button" name="submit" value="Guess"/>
+                <input disabled={disabled} type="submit" id="guessButton" className="button" name="submit" value="Guess"/>
             </form>
         );
     }
 };
 
+//when you click newgame, the value in the input should clear. also look into required for input
+//you already guessed that 
+//disabled
