@@ -3,5 +3,12 @@ h1 {
 	font-size: 3em;
 	padding: 0.8em;
 	color: #fff;
+}
 
+h3{
+	font-weight: 900;
+	font-size: 2em;
+	padding-bottom: 0.8em;
+	color: #fff;
+	font-family: 'Orbitron', sans-serif;
 }
