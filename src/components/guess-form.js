@@ -45,5 +45,3 @@ export default class GuessForm extends React.Component {
 };
 
 //when you click newgame, the value in the input should clear. also look into required for input
-//you already guessed that 
-//disabled
