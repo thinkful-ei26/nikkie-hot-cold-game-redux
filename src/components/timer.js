@@ -1,29 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { restartGame, startTimer } from '../actions';
 
-const startTime = 10;
+export class Timer extends React.Component {
 
-export default class Timer extends React.Component {
-  
-  constructor(props){
-    super(props)
-    this.state = {
-      currentTime: startTime,
-    }
-  } 
-
+  //theres no state being managed 
   startTimer() {
-      this.setState({
-        currentTime: startTime,
-      }) //reset state
-
-      this.incrementer = setInterval( () =>
-        this.setState({
-          currentTime: this.state.currentTime - 1
-        })
-      , 1000);
-
-      //this.incrementer -setting a property of our class. WE're setting it = to setInterval which takes a fn and a number (ms) - will execute the fn every 1000 ms - setInterval is JS. setInterval returns a unique id, that we set = to incrementer, so we can pass it into clearInterval with the unique id
+    //dispacth the action of starting timer 
+    this.props.dispatch(startTimer());
+    this.refresh = setInterval( () => this.refreshTimer(), 1000); //need this to call clearInterval later
   }
+
+  //this is an accurate timer - so if it's running on a really slow comp, it might jump but still stay true to the real time (unlike old code)
 
   componentDidMount(){
     console.log('Mounting');
@@ -32,20 +20,29 @@ export default class Timer extends React.Component {
 
   componentWillUnmount(){
     console.log('Unmounting');
-    clearInterval(this.incrementer);
+    clearInterval(this.refresh);
   } //this will happen when  I make Timer comp disappear
 
-  componentDidUpdate(){
-    if(this.state.currentTime===0){
+  refreshTimer(){
+    if (+new Date() > this.props.timerShouldEnd){
       console.log('HERE');
-      clearInterval(this.incrementer);
-      this.props.restartGame(); //after timer is over, restart game
+      clearInterval(this.refresh);
+      this.props.dispatch(restartGame()); //after timer is over, restart game
+    }
+    else{
+      this.forceUpdate(); //triggers a render
     }
   }
 
   render() {
     return(
-      <h3> {this.state.currentTime} </h3>
+      <h3> {Math.ceil((this.props.timerShouldEnd - +new Date())/1000)} </h3> //so it looks like a normal number
     )
   }
 }
+
+const mapStateToProps = state => ({ 
+  timerShouldEnd: state.timerShouldEnd,
+});
+
+export default connect(mapStateToProps)(Timer);

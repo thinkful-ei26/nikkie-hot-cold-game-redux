@@ -15,7 +15,7 @@ export class Header extends React.Component {
     render(){
         let infoModal = this.props.displayModal ?  <InfoModal /> : '';
         
-        let timer = this.props.displayTimer ? <Timer restartGame={()=>this.props.restartGame()}/> : '';
+        let timer = this.props.displayTimer ? <Timer/> : '';
 
         return (
             <header>

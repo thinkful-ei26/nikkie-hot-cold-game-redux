@@ -8,6 +8,7 @@ const initialState ={
   displayModal: false,
   disabled: false,
   correctAnswer: Math.floor((Math.random() * 100) + 1),
+  timerShouldEnd: 0,
   // correctAnswer changes when user hits new game so should be part of state
 
 };
@@ -66,6 +67,13 @@ export const gameReducer = (state=initialState, action)=> {
     return Object.assign({}, state, {
       displayModal: action.bool,
     })
+  }
+
+  else if(action.type ==="START_TIMER"){
+    return Object.assign({}, state, {
+      timerShouldEnd: +new Date() + 10000 //10 seconds from when the timer starts. +new means current date as a number 
+    })
+
   }
 
   return state;
