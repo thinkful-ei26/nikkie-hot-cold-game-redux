@@ -1,18 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { displayAbout, restartGame } from '../actions';
 
 import './top-nav.css';
 
-export default function TopNav(props) {
+export function TopNav(props) {
     return (
         <nav>
             <ul className="clearfix">
                 <li>
-                    <a className="what" href="#" onClick={()=>props.onClickInfo(true)}>
+                    <a className="what" href="#" onClick={()=>props.dispatch(displayAbout(true))}>
                         What?
                     </a>
                 </li>
                 <li>
-                    <a className="new" href="#" onClick={()=>props.restartGame()}>
+                    <a className="new" href="#" onClick={()=>props.dispatch(restartGame())}>
                         + New Game
                     </a>
                 </li>
@@ -21,3 +23,4 @@ export default function TopNav(props) {
     );
 }
 
+export default connect()(TopNav);

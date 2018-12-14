@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './info-modal.css';
+import { displayAbout } from '../actions';
 
-export default function InfoModal(props) {
+export function InfoModal(props) {
     return (
         <div className="overlay" id="modal">
             <div className="content">
@@ -15,9 +17,12 @@ export default function InfoModal(props) {
                         <li>3. You will <strong>get feedback</strong> on how close ("hot") or far ("cold") your guess is.</li>
                     </ul>
                     <p>So, Are you ready?</p>
-                    <a onClick={()=>props.onClickInfo(false)} className="close" href="#">Got It!</a>
+                    <a onClick={()=>props.dispatch(displayAbout(false))} className="close" href="#">Got It!</a>
                 </div>
             </div>
         </div>
     );
 }
+
+  
+export default connect()(InfoModal);

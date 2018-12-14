@@ -5,6 +5,7 @@ const initialState ={
   guessCount: 0,
   guessesList: [],
   displayTimer: false,
+  displayModal: false,
   disabled: false,
   correctAnswer: Math.floor((Math.random() * 100) + 1),
   // correctAnswer changes when user hits new game so should be part of state
@@ -57,6 +58,13 @@ export const gameReducer = (state=initialState, action)=> {
       displayTimer: false,
       disabled:false,
       //is there a more efficient way of doing this with defaults? you could have an initial state
+    })
+  }
+
+  else if(action.type==="DISPLAY_ABOUT"){
+    //set displayModal to true 
+    return Object.assign({}, state, {
+      displayModal: action.bool,
     })
   }
 

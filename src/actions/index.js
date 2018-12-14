@@ -12,7 +12,7 @@ export const restartGame = ()=>({
   type: RESTART_GAME
 })
 
-export const DISPLAY_ABOUT = "CLICK_ABOUT"
+export const DISPLAY_ABOUT = "DISPLAY_ABOUT"
 export const displayAbout = bool=>({
   type: DISPLAY_ABOUT,
   bool
