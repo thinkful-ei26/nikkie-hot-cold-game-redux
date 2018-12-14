@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './guess-form.css';
+import { submitGuess } from '../actions';
 
-export default class GuessForm extends React.Component {
+export class GuessForm extends React.Component {
     constructor(props){
         super(props)
     }
@@ -12,16 +14,16 @@ export default class GuessForm extends React.Component {
         e.preventDefault();
         const guess = this.textInput.value;
         this.textInput.value = '';
-        this.props.handleGuessSubmit(guess);
+        this.props.dispatch(submitGuess(guess));
         //e.target.userGuess.value - without refs. both are uncontrolled. with controlled, you'd have state
     }
 
 
     render(){
         let disabled="";
-        if(this.props.disabled){
-            disabled= "disabled"
-        }
+        // if(this.props.disabled){
+        //     disabled= "disabled"
+        // }
         console.log('disabled is', disabled);
         return (
             <form onSubmit={e=>this.onSubmit(e)}>
@@ -44,4 +46,8 @@ export default class GuessForm extends React.Component {
     }
 };
 
-//when you click newgame, the value in the input should clear. also look into required for input
+export default connect ()(GuessForm);
+//Question: Why don't we do makeStateToProps fn here?
+
+//when you click newgame, the value in the input should clear.
+
