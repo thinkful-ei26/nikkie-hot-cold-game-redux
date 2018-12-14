@@ -38,15 +38,19 @@ export class GuessForm extends React.Component {
                     min= "1"
                     max="100"
                     required 
-                    disabled={disabled}
+                    disabled={this.props.disabled}
                     ref={input => this.textInput=input}/>
-                <input disabled={disabled} type="submit" id="guessButton" className="button" name="submit" value="Guess"/>
+                <input disabled={this.props.disabled} type="submit" id="guessButton" className="button" name="submit" value="Guess"/>
             </form>
         );
     }
 };
 
-export default connect ()(GuessForm);
+export const mapStateToProps = state => ({
+    disabled: state.disabled,
+  })
+
+export default connect (mapStateToProps)(GuessForm);
 //Question: Why don't we do makeStateToProps fn here? We do that when we directly need access to a prop which we currently dont
 
 //when you click newgame, the value in the input should clear.
