@@ -27,5 +27,3 @@ const mapStateToProps = state => ({
   });
   
 export default connect(mapStateToProps)(Header);
-
-//adding features: adding a timer, and disabling guesses if they won

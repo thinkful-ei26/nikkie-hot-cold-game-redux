@@ -14,14 +14,25 @@ const initialState ={
 
 };
 
+function handleFeedback(state, action){
+//look at what action.guess is and determine the feedback (seperate fn)
+    return (
+      state.guessesList.includes(action.guess) 
+      ? "Oops, you already guessed that number!" 
+      : action.guess==state.correctAnswer 
+      ?  "YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds" 
+      : action.guess>state.correctAnswer-10 && action.guess<state.correctAnswer+10 
+      ? "Hot!" 
+      : "Cold :("
+    );
+}
+
 export const gameReducer = (state=initialState, action)=> {
   
   if(action.type==="SUBMIT_GUESS"){
-    //look at what action.guess is and determine the feedback (seperate fn)
-    let feedback = state.guessesList.includes(action.guess) ? "Oops, you already guessed that number!" : action.guess==state.correctAnswer ?  "YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"
-    : action.guess>state.correctAnswer-10 && action.guess<state.correctAnswer+10 ? "Hot!" 
-    : "Cold :(";
+    
     //based on the feedback, change the state accordingly: 
+    let feedback = handleFeedback(state, action);
 
     //if feedback is they won: display the timer, turn on disabled for button/input, update the guess list with the guess, update the guess count, update the feedback 
     if(feedback==="YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"){
