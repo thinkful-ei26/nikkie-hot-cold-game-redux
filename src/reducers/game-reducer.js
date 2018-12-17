@@ -52,7 +52,9 @@ export const gameReducer = (state=initialState, action)=> {
   //set everything back to initial state
   else if(action.type===RESTART_GAME){
     //set state back to default
-    return Object.assign({}, state, initialState)
+    return Object.assign({}, initialState, {
+      correctAnswer: Math.floor((Math.random() * 100) + 1),
+    })
   }
 
   else if (action.type === GENERATE_AURAL_UPDATE) {
