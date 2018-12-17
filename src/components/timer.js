@@ -42,7 +42,7 @@ export class Timer extends React.Component {
 }
 
 const mapStateToProps = state => ({ 
-  timerShouldEnd: state.timerShouldEnd,
+  timerShouldEnd: state.timer.timerShouldEnd,
 });
 
 export default connect(mapStateToProps)(Timer);

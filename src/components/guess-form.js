@@ -40,8 +40,8 @@ export class GuessForm extends React.Component {
 };
 
 export const mapStateToProps = state => ({
-    disabled: state.disabled,
-    guessInput: state.guessInput,
+    disabled: state.game.disabled,
+    guessInput: state.game.guessInput,
   })
 
 export default connect (mapStateToProps)(GuessForm);

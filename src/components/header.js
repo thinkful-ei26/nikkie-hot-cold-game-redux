@@ -22,8 +22,8 @@ export function Header(props){
 };
 
 const mapStateToProps = state => ({
-    displayModal: state.displayModal,
-    displayTimer: state.displayTimer,
+    displayModal: state.modal.displayModal,
+    displayTimer: state.game.displayTimer,
   });
   
 export default connect(mapStateToProps)(Header);

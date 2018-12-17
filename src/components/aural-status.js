@@ -15,7 +15,7 @@ export function AuralStatus(props) {
 }
 
 const mapStateToProps = state => ({
-  auralStatus: state.auralStatus
+  auralStatus: state.game.auralStatus
 });
 
 export default connect(mapStateToProps)(AuralStatus);

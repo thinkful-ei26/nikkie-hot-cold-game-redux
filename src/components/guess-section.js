@@ -18,7 +18,7 @@ export function GuessSection(props) {
 }
 
 const mapStateToProps = state => ({
-    feedback: state.feedback
+    feedback: state.game.feedback
   });
   
 export default connect(mapStateToProps)(GuessSection);

@@ -24,7 +24,7 @@ export function Game(props){
 }
 
 export const mapStateToProps = state => ({
-  correctAnswer: state.correctAnswer,
+  correctAnswer: state.game.correctAnswer,
 })
 
 export default connect(mapStateToProps)(Game);
