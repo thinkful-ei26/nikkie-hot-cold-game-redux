@@ -19,3 +19,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(AuralStatus);
+
+//we want people to know things are changing on the screen - the screen reader will make this update apparent to the person when they click to hear the status of the game

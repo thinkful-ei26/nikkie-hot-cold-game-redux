@@ -37,7 +37,7 @@ export class GuessForm extends React.Component {
             </form>
         );
     }
-};
+}
 
 export const mapStateToProps = state => ({
     disabled: state.game.disabled,
@@ -45,8 +45,3 @@ export const mapStateToProps = state => ({
   })
 
 export default connect (mapStateToProps)(GuessForm);
-// Why don't we do makeStateToProps fn here? We do that when we directly need access to a prop which we currently dont
-
-//when you click newgame, the value in the input should clear.
-
-//With React you're supposed to use controlled inputs for everything - so onChange, I would change the state and grab what's in the state and put in the value of the input

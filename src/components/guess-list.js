@@ -16,7 +16,7 @@ export function GuessList(props) {
             {guesses}
         </ul>
     );
-};
+}
 
 const mapStateToProps = state => ({
     guessesList: state.game.guessesList

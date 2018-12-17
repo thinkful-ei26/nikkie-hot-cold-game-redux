@@ -9,7 +9,6 @@ const initialState ={
   displayTimer: false,
   disabled: false,
   correctAnswer: Math.floor((Math.random() * 100) + 1),
-  guessInput: "",
   auralStatus: '',
   // correctAnswer changes when user hits new game so should be part of state
 };
