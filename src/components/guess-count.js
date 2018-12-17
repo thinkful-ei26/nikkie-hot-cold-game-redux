@@ -12,7 +12,7 @@ export function GuessCount(props) {
     );
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
     guessCount: state.guessCount
   });
   

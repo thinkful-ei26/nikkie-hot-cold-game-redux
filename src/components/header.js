@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { displayAbout } from '../actions';
 
 import TopNav from './top-nav';
 import InfoModal from './info-modal';
@@ -8,24 +7,18 @@ import Timer from './timer'
 
 import './header.css';
 
-export class Header extends React.Component {
+export function Header(props){
 
     //could also do this with css? ya we could add a class  with display none etc.
 
-    render(){
-        let infoModal = this.props.displayModal ?  <InfoModal /> : '';
-        
-        let timer = this.props.displayTimer ? <Timer/> : '';
-
-        return (
-            <header>
-                <TopNav />
-                {infoModal}
-                <h1>HOT or COLD</h1>
-                {timer}
-            </header>
-        );
-    }
+    return (
+        <header>
+            <TopNav />
+            {props.displayModal ?  <InfoModal /> : ''}
+            <h1>HOT or COLD</h1>
+            {props.displayTimer ? <Timer/> : ''}
+        </header>
+    );
 };
 
 const mapStateToProps = state => ({

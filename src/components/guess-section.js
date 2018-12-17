@@ -19,5 +19,3 @@ const mapStateToProps = state => ({
   });
   
 export default connect(mapStateToProps)(GuessSection);
-
-//Question: why is feedback not showing up? 

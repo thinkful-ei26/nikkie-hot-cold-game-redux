@@ -9,12 +9,13 @@ const initialState ={
   disabled: false,
   correctAnswer: Math.floor((Math.random() * 100) + 1),
   timerShouldEnd: 0,
+  guessInput: "",
   // correctAnswer changes when user hits new game so should be part of state
 
 };
 
 export const gameReducer = (state=initialState, action)=> {
-
+  
   if(action.type==="SUBMIT_GUESS"){
     //look at what action.guess is and determine the feedback (seperate fn)
     let feedback = state.guessesList.includes(action.guess) ? "Oops, you already guessed that number!" : action.guess==state.correctAnswer ?  "YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"
@@ -73,7 +74,6 @@ export const gameReducer = (state=initialState, action)=> {
     return Object.assign({}, state, {
       timerShouldEnd: +new Date() + 10000 //10 seconds from when the timer starts. +new means current date as a number 
     })
-
   }
 
   return state;

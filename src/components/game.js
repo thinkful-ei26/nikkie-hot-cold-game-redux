@@ -8,21 +8,19 @@ import GuessList from './guess-list';
 
 import './game.css'
 
-export class Game extends React.Component {
+export function Game(props){
 
-    render(){
-        console.log(this.props.correctAnswer);
-        return (
-            <div>
-                <Header />
-                <div className="box">
-                <GuessSection/>
-                <GuessCount />
-                <GuessList />
-                </div>
+    console.log(props.correctAnswer);
+    return (
+        <div>
+            <Header />
+            <div className="box">
+            <GuessSection/>
+            <GuessCount />
+            <GuessList />
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export const mapStateToProps = state => ({
@@ -30,6 +28,3 @@ export const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(Game);
-
-//Queston: Do I still need a constructor and props? 
-//Question: do I need default props? For what occasion?
