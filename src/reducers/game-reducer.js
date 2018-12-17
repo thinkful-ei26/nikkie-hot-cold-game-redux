@@ -53,7 +53,7 @@ export const gameReducer = (state=initialState, action)=> {
   else if(action.type===RESTART_GAME){
     //set state back to default
     return Object.assign({}, initialState, {
-      correctAnswer: Math.floor((Math.random() * 100) + 1),
+      correctAnswer: action.correctAnswer,
     })
   }
 
