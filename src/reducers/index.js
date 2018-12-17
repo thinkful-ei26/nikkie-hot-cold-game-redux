@@ -51,6 +51,7 @@ export const gameReducer = (state=initialState, action)=> {
         feedback: feedback,
       })
     }
+
     //else (basically they're hot or cold), update the guesses list, guesses count, and feedback 
     else{
       return Object.assign({}, state, {
@@ -61,17 +62,10 @@ export const gameReducer = (state=initialState, action)=> {
     }
   }
 
+  //set everything back to initial state
   else if(action.type==="RESTART_GAME"){
     //set state back to default
-    return Object.assign({}, state, {
-      feedback: 'Make your guess!',
-      guessCount: 0,
-      guessesList: [],
-      correctAnswer: Math.floor((Math.random() * 100) + 1),
-      displayTimer: false,
-      disabled:false,
-      //is there a more efficient way of doing this with defaults? you could have an initial state
-    })
+    return Object.assign({}, initialState)
   }
 
   else if(action.type==="DISPLAY_ABOUT"){
