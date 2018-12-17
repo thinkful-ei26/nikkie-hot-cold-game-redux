@@ -1,4 +1,4 @@
-import {SUBMIT_GUESS, RESTART_GAME, DISPLAY_ABOUT} from '../actions';
+import {SUBMIT_GUESS, RESTART_GAME, DISPLAY_ABOUT, START_TIMER, GENERATE_AURAL_UPDATE} from '../actions';
 
 const initialState ={
   feedback: 'Make your guess!',
@@ -10,11 +10,12 @@ const initialState ={
   correctAnswer: Math.floor((Math.random() * 100) + 1),
   timerShouldEnd: 0,
   guessInput: "",
+  auralStatus: '',
   // correctAnswer changes when user hits new game so should be part of state
 
 };
 
-function handleFeedback(state, action){
+function generateFeedback(state, action){
 //look at what action.guess is and determine the feedback (seperate fn)
     return (
       state.guessesList.includes(action.guess) 
@@ -27,12 +28,33 @@ function handleFeedback(state, action){
     );
 }
 
+function generateAuralStatus(state){
+  console.log('in generate aural state is,', state);
+  const {guessesList, feedback} = state;
+
+  // If there's not exactly 1 guess, we want to
+  // pluralize the nouns in this aural update.
+  const pluralize = guessesList.length !== 1;
+
+  let auralStatus = `Here's the status of the game right now: ${feedback} You've made ${guessesList.length} ${pluralize
+      ? 'guesses'
+      : 'guess'}.`;
+
+  if (guessesList.length > 0) {
+      auralStatus += ` ${pluralize
+          ? 'In order of most- to least-recent, they are'
+          : 'It was'}: ${guessesList.reverse().join(', ')}`;
+  }
+
+  return auralStatus;
+}
+
 export const gameReducer = (state=initialState, action)=> {
   
-  if(action.type==="SUBMIT_GUESS"){
+  if(action.type===SUBMIT_GUESS){
     
     //based on the feedback, change the state accordingly: 
-    let feedback = handleFeedback(state, action);
+    let feedback = generateFeedback(state, action);
 
     //if feedback is they won: display the timer, turn on disabled for button/input, update the guess list with the guess, update the guess count, update the feedback 
     if(feedback==="YOU WON! Click New Game to Start Again! Game will automatically restart in 10 seconds"){
@@ -63,23 +85,28 @@ export const gameReducer = (state=initialState, action)=> {
   }
 
   //set everything back to initial state
-  else if(action.type==="RESTART_GAME"){
+  else if(action.type===RESTART_GAME){
     //set state back to default
     return Object.assign({}, initialState)
   }
 
-  else if(action.type==="DISPLAY_ABOUT"){
+  else if(action.type===DISPLAY_ABOUT){
     //set displayModal to true 
     return Object.assign({}, state, {
       displayModal: action.bool,
     })
   }
 
-  else if(action.type ==="START_TIMER"){
+  else if(action.type ===START_TIMER){
     return Object.assign({}, state, {
       timerShouldEnd: +new Date() + 10000 //10 seconds from when the timer starts. +new means current date as a number 
     })
   }
+
+  else if (action.type === GENERATE_AURAL_UPDATE) {
+    let auralStatus = generateAuralStatus(state);
+    return Object.assign({}, state, {auralStatus});
+}
 
   return state;
 };

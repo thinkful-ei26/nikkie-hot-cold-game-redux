@@ -1,6 +1,11 @@
 //Actions should include;
 // User hitting "guess" button to submit their guess, user hitting "new game" to restart the game, user hitting "about" to see how to play the game 
 
+export const GENERATE_AURAL_UPDATE = 'GENERATE_AURAL_UPDATE';
+export const generateAuralUpdate = () => ({
+    type: GENERATE_AURAL_UPDATE
+});
+
 export const SUBMIT_GUESS = "SUBMIT_GUESS"
 export const submitGuess = guess =>({
   type: SUBMIT_GUESS,
